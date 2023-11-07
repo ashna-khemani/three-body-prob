@@ -13,7 +13,7 @@ G = 6.67*10^-11;
 m = [10^10, 10^10, 10^10];
 
 % Initial positions
-r = [[-10; 10], [0;0], [10;-10]];
+r = [[-1; 10], [0;0], [5;5]];
 
 % Initial velocities
 v = [[0;0], [0;0], [0;0]];
@@ -69,10 +69,10 @@ for dt = 0:1:50
 
     % Find v_t+1 = (a_t-1 + a_t)/2 * dt
     % Basic kinematics: v_t+1 ~= v_t + a_avg * dt
+    v = v + (a + a_old)/2 * dt;
     % for body = 1:1:3
     %     v(:,body) = (a_old(:, body) + a(:,body))/2 * dt;
     % end
-    v = v + (a_old + a)/2 * dt;
 
     plot(r(1,1), r(2,1), 'r-*')
     plot(r(1,2), r(2,2), 'g-+')

@@ -7,16 +7,16 @@
 N = 3;
 
 % Grav. constant [N*m^2 / kg^2]
-G = 6.67*10^-11;
+G = 1;
 
 % Vector of masses, kg
-m = [10^10, 10^10, 10^10];
+m = [1; 1; 1];
 
 % Initial positions
-r = [[-10; 10], [0;0], [10;-10]];
+r = [[-0.97000436; 0.24308753], [0;0], [0.97000436; -0.24308753]];
 
 % Initial velocities
-v = [[0;0], [0;0], [0;0]];
+v = [[0.4662036850; 0.4323657300], [-0.93240737; -0.86473146], [0.4662036850; 0.4323657300]];
 
 % Initial accelerations
 a = [[0;0], [0;0], [0;0]];
@@ -24,18 +24,18 @@ a_old = a;  % will store old a vects (needed to find new vel. vects)
 
 
 % Plot initial positions
-hold on
-plot(r(1,1), r(2,1), 'k-*')
-plot(r(1,2), r(2,2), 'k-+')
+
+plot(r(1,1), r(2,1), 'k-*', 'MarketSize', 10)
+plot(r(1,2), r(2,2), 'k-+', 'MarkerSize', 10)
 plot(r(1,3), r(2,3), 'k-o')
-
+hold on 
 % Timesteps desired
-T = 50;
-
+T = 10;
+dt = 0.02;
 
 
 %% Calculating
-for dt = 0:1:50
+for t = 0:0.02:T
     % Find distances [vect] and absolute lengths [scl] between each body ---- t
     dist_1to2 = r(:,2) - r(:,1);
     length_1to2 = sqrt(dist_1to2' * dist_1to2);
@@ -65,14 +65,11 @@ for dt = 0:1:50
     % Find r_t+1 using r_t, v_(t), and a_t
     % Basic kinematics: x = x0 + v0*t + 1/2*a*t^2
     % r_t+1 = r_t + v_t*dt + 0.5*a_t*dt^2
-    r = r + v*dt + 0.5*a*dt^2;
+    r = r + v*dt + 0.5*a*(dt^2);
 
     % Find v_t+1 = (a_t-1 + a_t)/2 * dt
     % Basic kinematics: v_t+1 ~= v_t + a_avg * dt
-    % for body = 1:1:3
-    %     v(:,body) = (a_old(:, body) + a(:,body))/2 * dt;
-    % end
-    v = v + (a_old + a)/2 * dt;
+    v = v + (a + a_old)/2 * dt;
 
     plot(r(1,1), r(2,1), 'r-*')
     plot(r(1,2), r(2,2), 'g-+')
