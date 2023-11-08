@@ -15,6 +15,6 @@ Funky! There's tons of other cool solutions out there, resulting in polar flower
 
 While I obviously can't find and model them *all*, I hope to model a few nifty ones!
 
-## The Math (!)
+## The Math
 *Coming soon!*
 
