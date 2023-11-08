@@ -16,18 +16,16 @@ Funky! There's tons of other cool solutions out there, resulting in polar flower
 While I obviously can't find and model them *all*, I hope to model a few nifty ones!
 
 ## The Math
-*Coming soon!*
-
 Most of my "solution" models will use Verlet's solution. The gist of Verlet's is that we will estimate velocity using average acceleration. That is: $v_{t+1} = v_{t} + \dfrac{a_{t} + a_{t+1}}{2} \Delta t$
 
 From introductory mechanics, we know the force of gravity is $|F_{g}| = \dfrac{GMm}{r^{2}}$ where:
-- $G$ is the universal gravitational constant $6.67*10^{-11} [\dfrac{N*m^2}{kg^2}] $
+- $G$ is the universal gravitational constant $6.67*10^{-11} \dfrac{Nm^2}{kg^2} $
 - $M$ and $m$ are the masses of the two interacting bodies, measured in $kg$
 - $r$ is the distance between the bodies, measured in $m$
 
-But we're better than this! We'll use vectors. The force of gravity of $M$ on $m$ will be along the unit vector from $m$ to $M$. A quick Google search of unit vectors helps us see that this unit vector will be $\^{r} = \dfrac{\vec{r}}{|r|}$. So we can rewrite our initial gravity equation using vectors:
-$$\vec{F_{g}} = \dfrac{GMm}{|r|^{2}} \^{r} = \dfrac{GMm}{|r|^{2}} \dfrac{\vec{r}}{|r|}$$
-$$\Rightarrow \vec{F_{g}} = \dfrac{GMm}{|r|^{3}} \^{r}$$
+But we're better than this! We'll use vectors. The force of gravity of $M$ on $m$ will be along the unit vector from $m$ to $M$. A quick Google search of unit vectors helps us see that this unit vector will be $\hat{r} = \dfrac{\vec{r}}{|r|}$. So we can rewrite our initial gravity equation using vectors:
+$$\vec{F_{g}} = \dfrac{GMm}{|r|^{2}} \hat{r} = \dfrac{GMm}{|r|^{2}} \dfrac{\vec{r}}{|r|}$$
+$$\Rightarrow \vec{F_{g}} = \dfrac{GMm}{|r|^{3}} \vec{r}$$
 
 Okay great. But what we *want* is the next position of a body (at time $t+1$). Again, from basic mechanics we know:
 $$\vec{r_{t+1}} = \vec{r_{t}} + \vec{v_{t}} t + \dfrac{1}{2} \vec{a_{t}} t^{2}$$
